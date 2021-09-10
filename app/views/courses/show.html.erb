@@ -1,0 +1,37 @@
+<p id="notice"><%= notice %></p>
+
+<% set_current_course @course %>
+<p>
+  <strong>Course name:</strong>
+  <%= @course.course_name %>
+</p>
+<p>
+  <strong>Semester:</strong>
+  <%= @course.semester %>
+</p>
+<p>
+  <strong>Instructor ID:</strong>
+  <%= @course.instructor_id %>
+</p>
+
+<table>
+  <thead>
+    <tr><th>Course Students:</th></tr>
+  </thead>
+
+  <tbody>
+    <% Student.all.each do |student| %>
+      <% if @course.students.any? { |current| current.email == student.email } %>
+        <tr>
+          <td><%= student.first_name + " " + student.last_name + ": " + student.email %><td>
+        </tr>
+      <% end %>
+    <% end %>
+  </tbody>
+</table>
+
+<% if current_instructor %>
+<%= link_to 'Create and Manage Groups', groups_path, :class => "btn btn-primary btn-sm" %>
+<%= link_to 'Edit', edit_course_path(@course) %> |
+<% end %>
+<%= link_to 'Back', courses_path %>

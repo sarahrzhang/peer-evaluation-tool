@@ -1,0 +1,15 @@
+<div class="topnav">
+    <% if !current_student && !current_instructor %>
+    <%= link_to 'Home', root_path, class: 'active'%>
+    <%= link_to 'Student Login', new_student_session_path %>
+    <%= link_to 'Instructor Login', new_instructor_session_path %>
+    <%= link_to 'Student Signup', new_student_registration_path %>
+    <%= link_to 'Instructor Signup', new_instructor_registration_path %>
+    <% elsif !current_student && current_instructor %>
+    <%= link_to 'Dashboard', root_path, class: 'active'%>
+    <%= link_to 'Sign Out', destroy_instructor_session_path, method: :delete, class: 'active' %> 
+    <% elsif !current_instructor && current_student %>
+    <%= link_to 'Dashboard', root_path, class: 'active'%>
+    <%= link_to 'Sign Out', destroy_student_session_path, method: :delete, class: 'active' %>
+    <% end %>
+</div>

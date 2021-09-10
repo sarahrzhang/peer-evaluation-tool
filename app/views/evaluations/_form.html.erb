@@ -1,0 +1,60 @@
+<%= form_with(model: evaluation) do |form| %>
+  <% if evaluation.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(evaluation.errors.count, "error") %> prohibited this evaluation from being saved:</h2>
+
+      <ul>
+        <% evaluation.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :project_description, "Project Description" %>
+    <%= form.text_area :project_description %>
+  </div>
+
+  <div>
+    <p>Team Members:
+    <% get_current_group.students.each do |stud| %>
+      <br>Name: <%= stud.first_name%> <%= stud.last_name%>. ID: <%= stud.id%>
+    <% end %>
+    </p>
+  </div>
+  <div class="field">
+    <%= form.label :student_id, "Please enter the student's ID to be evaluated" %>
+    <%= form.number_field :student_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :leadership_score, "Please rate the group member's leadership for the project."%>
+    <%= form.select :leadership_score, [1, 2, 3, 4, 5]%>
+  </div>
+    <div class="field">
+    <%= form.label :communication_score, "Please rate the group member's communication for the project."%>
+    <%= form.select :communication_score, [1, 2, 3, 4, 5]%>
+  </div>
+    <div class="field">
+    <%= form.label :contribution_score, "Please rate the group member's contribution for the project."%>
+    <%= form.select :contribution_score, [1, 2, 3, 4, 5]%>
+  </div>
+    <div class="field">
+    <%= form.label :quality_score, "Please rate the group member's quality for the project."%>
+    <%= form.select :quality_score, [1, 2, 3, 4, 5]%>
+  </div>
+    <div class="field">
+    <%= form.label :skills_score, "Please rate the group member's skills for the project."%>
+    <%= form.select :skills_score, [1, 2, 3, 4, 5]%>
+  </div>
+
+  <div class="field">
+    <%= form.label :comment, "Is there anything else you would like to add?" %>
+    <%= form.text_area :comment %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,47 @@
+<%= form_with(model: response) do |form| %>
+  <% if response.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(response.errors.count, "error") %> prohibited this response from being saved:</h2>
+
+      <ul>
+        <% response.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :leadership_score %>
+    <%= form.number_field :leadership_score %>
+  </div>
+
+  <div class="field">
+    <%= form.label :communication_score %>
+    <%= form.number_field :communication_score %>
+  </div>
+
+  <div class="field">
+    <%= form.label :contribution_score %>
+    <%= form.number_field :contribution_score %>
+  </div>
+
+  <div class="field">
+    <%= form.label :quality_score %>
+    <%= form.number_field :quality_score %>
+  </div>
+
+  <div class="field">
+    <%= form.label :skills_score %>
+    <%= form.number_field :skills_score %>
+  </div>
+
+  <div class="field">
+    <%= form.label :comment %>
+    <%= form.text_area :comment %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

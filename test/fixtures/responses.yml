@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  leadership_score: 1
+  communication_score: 1
+  contribution_score: 1
+  quality_score: 1
+  skills_score: 1
+  comment: MyText
+
+two:
+  leadership_score: 1
+  communication_score: 1
+  contribution_score: 1
+  quality_score: 1
+  skills_score: 1
+  comment: MyText

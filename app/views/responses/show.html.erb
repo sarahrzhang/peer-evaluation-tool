@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Leadership score:</strong>
+  <%= @response.leadership_score %>
+</p>
+
+<p>
+  <strong>Communication score:</strong>
+  <%= @response.communication_score %>
+</p>
+
+<p>
+  <strong>Contribution score:</strong>
+  <%= @response.contribution_score %>
+</p>
+
+<p>
+  <strong>Quality score:</strong>
+  <%= @response.quality_score %>
+</p>
+
+<p>
+  <strong>Skills score:</strong>
+  <%= @response.skills_score %>
+</p>
+
+<p>
+  <strong>Comment:</strong>
+  <%= @response.comment %>
+</p>
+
+<%= link_to 'Edit', edit_response_path(@response) %> |
+<%= link_to 'Back', responses_path %>

@@ -1,0 +1,46 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Project ID:</strong>
+  <%= @evaluation.project_description %>
+</p>
+<p>
+  <strong>Group ID:</strong>
+  <%= @evaluation.group_id %>
+</p>
+<p>
+  <strong>Student ID:</strong>
+  <%= @evaluation.student_id %>
+</p>
+<p>
+  <strong>Leadership score:</strong>
+  <%= @evaluation.leadership_score %>
+</p>
+
+<p>
+  <strong>Communication score:</strong>
+  <%= @evaluation.communication_score %>
+</p>
+
+<p>
+  <strong>Contribution score:</strong>
+  <%= @evaluation.contribution_score %>
+</p>
+
+<p>
+  <strong>Quality score:</strong>
+  <%= @evaluation.quality_score %>
+</p>
+
+<p>
+  <strong>Skills score:</strong>
+  <%= @evaluation.skills_score %>
+</p>
+
+<p>
+  <strong>Comment:</strong>
+  <%= @evaluation.comment %>
+</p>
+
+<%= link_to 'Edit', edit_evaluation_path(@evaluation) %> |
+<%= link_to 'Back', evaluations_path %>

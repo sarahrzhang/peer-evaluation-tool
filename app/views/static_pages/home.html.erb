@@ -1,0 +1,44 @@
+<div class="container">
+    <% if !current_instructor && !current_student %>
+          <%= render 'layouts/homebackground' %>
+        <% elsif !current_student && current_instructor %>
+        <h1>Welcome <%= current_instructor.first_name %>!</h1>
+        <% elsif !current_instructor && current_student %>
+        <h1>Welcome <%= current_student.first_name %>!</h1>
+        <% end %>
+</div>
+
+<% if current_student %>
+<%= render 'layouts/background' %>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-6">
+            <h3>Student Dashboard</h3>
+            <p>To begin using our tool, first tell an instructor to enroll you in a course and assign you to a group (or many groups).</p>
+            <p>You can only create evaluations for your team members, so view your groups and select the group you would like to leave an evaluation about.</p>
+
+            <%= link_to 'My Courses', courses_path, :class => "btn btn-primary btn-sm" %>
+            <%= link_to 'My Groups', groups_path, :class => "btn btn-primary btn-sm" %>
+            <%= link_to 'My Evaluations', evaluations_path, :class => "btn btn-primary btn-sm" %>
+            
+        </div>
+    </div>
+</div>
+<%end %>
+<% if current_instructor %>
+<%= render 'layouts/background' %>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-9">
+            <h3>Instructor Dashboard</h3>
+            <p>To begin using our tool, first create a course and assign students to it.</p>
+            
+            <p>To create and manage groups within a course, first go to your courses page and then select a course by pressing "show". </p>
+            <br>
+            <%= link_to 'My Courses', courses_path, :class => "btn btn-primary btn-sm" %>
+            <%= link_to 'Create New Course', new_course_path, :class => "btn btn-primary btn-sm" %>
+            <%= link_to 'View Student Evaluations', evaluations_path, :class => "btn btn-primary btn-sm" %>
+        </div>
+    </div>
+</div>
+<%end %>

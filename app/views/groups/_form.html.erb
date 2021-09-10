@@ -1,0 +1,43 @@
+<%= form_with(model: group) do |form| %>
+  <% if group.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(group.errors.count, "error") %> prohibited this group from being saved:</h2>
+
+      <ul>
+        <% group.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <h2>You are in Course <%= get_current_course.id %></h2>
+  <p>To change this, update an existing course or create a new one.</p>
+  <div class="actions">
+    <table>
+      <thead>
+        <tr><th>Add students to group.</th></tr>
+      </thead>
+  
+      <tbody>
+        <% Student.all.each do |student| %>
+          <% #get_current_course THIS IS BAD CODE HERE. NO CURRENT COURSE%>
+          <% if get_current_course.students.any? { |current| current.email == student.email } && group.students.none? { |current| current.email == student.email } %>
+            <tr>
+              <td><%= check_box_tag("input[]", student.email) %><td>
+              <td><%= label_tag(student.first_name + student.last_name + ": " + student.email) %><td>
+            </tr>
+          <% end %>
+        <% end %>
+      </tbody> 
+    </table>
+
+  <div class="field">
+    <%= form.label :group_name %>
+    <%= form.text_field :group_name %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

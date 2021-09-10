@@ -1,0 +1,81 @@
+<p id="notice"><%= notice %></p>
+
+<% if current_student %>
+<h1>Evaluations about me:</h1>
+<% end %>
+<% if current_instructor %>
+<h1>Student Evaluations:</h1>
+<% end %>
+
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th scope="col">Project</th>
+      <th scope="col">Course</th>
+      <th scope="col">Evaluatee</th>
+      <th scope="col">Group</th>
+      <th scope="col">Leadership score</th>
+      <th scope="col">Communication score</th>
+      <th scope="col">Contribution score</th>
+      <th scope="col">Quality score</th>
+      <th scope="col">Skills score</th>
+      <th scope="col">Comment</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <% if current_student %>
+  <tbody>
+    <% @evaluations.each do |evaluation| %>
+      <% if current_student.id == evaluation.student_id %>
+      <tr>
+        <td><%= evaluation.project_description %></td>
+        <td><%= Course.find(Group.find(evaluation.group_id).course_id).course_name %></td>
+        <td>
+        <%= Student.find(evaluation.student_id).first_name %> <%= Student.find(evaluation.student_id).last_name %>
+        </td>
+        <td><%= link_to Group.find(evaluation.group_id).group_name, Group.find(evaluation.group_id) %></td>
+        <td><%= evaluation.leadership_score %></td>
+        <td><%= evaluation.communication_score %></td>
+        <td><%= evaluation.contribution_score %></td>
+        <td><%= evaluation.quality_score %></td>
+        <td><%= evaluation.skills_score %></td>
+        <td><%= evaluation.comment %></td>
+        <td><%= link_to 'Show', evaluation, :class => "btn btn-primary" %></td>
+      </tr>
+      <% end %>
+    <% end %>
+  </tbody>
+  <% end %>
+
+  <% if current_instructor %>
+  <tbody>
+    <% @evaluations.each do |evaluation| %>
+      <% if current_instructor.id == Course.find(Group.find(evaluation.group_id).course_id).instructor_id %>
+      <tr>
+        <td><%= evaluation.project_description %></td>
+        <td><%= Course.find(Group.find(evaluation.group_id).course_id).course_name %></td>
+        <td>
+        <%= Student.find(evaluation.student_id).first_name %> <%= Student.find(evaluation.student_id).last_name %>
+        </td>
+        <td><%= link_to Group.find(evaluation.group_id).group_name, Group.find(evaluation.group_id) %></td>
+        <td><%= evaluation.leadership_score %></td>
+        <td><%= evaluation.communication_score %></td>
+        <td><%= evaluation.contribution_score %></td>
+        <td><%= evaluation.quality_score %></td>
+        <td><%= evaluation.skills_score %></td>
+        <td><%= evaluation.comment %></td>
+        <td><%= link_to 'Show', evaluation, :class => "btn btn-primary" %></td>
+        <td><%= link_to 'Edit', edit_evaluation_path(evaluation), :class => "btn btn-primary" %></td>
+        <td><%= link_to 'Delete', evaluation, method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-primary" %></td>
+      </tr>
+      <% end %>
+    <% end %>
+  </tbody>
+  <% end %>
+</table>
+
+<br>
+
+
+<%= link_to 'Back', root_path, :class => "btn btn-primary btn-sm" %>
